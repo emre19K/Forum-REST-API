@@ -48,7 +48,7 @@ const updateUser = (param1, param2, callback) => {
 
 };
 
-const deleteUser = async (param, callback) => {
+const deleteUser = (param, callback) => {
     User.findOneAndDelete({ userID: param }, (err, user) => {
         if (user) return callback(null, user);
         return callback({ Message: "User existiert nicht." }, null);
@@ -56,7 +56,7 @@ const deleteUser = async (param, callback) => {
 };
 
 // NEU
-const createDefaultAdminOnStart = async (callback) => {
+const createDefaultAdminOnStart = (callback) => {
     User.findOne({ isAdministrator: true }, (err, admin) => {
         if (admin) {
             return callback(null, "Default-Admin: " + admin.userID);
